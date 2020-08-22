@@ -16,9 +16,9 @@ const config = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const userRef = firestore.doc(`users/${userAuth.uid}`); //pointing to the location i.e the reference where the  data shpuld be present
 
-  const snapShot = await userRef.get();
+  const snapShot = await userRef.get(); //getting that location
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
@@ -26,6 +26,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
     try {
       await userRef.set({
+        //setting value to that location
         displayName,
         email,
         createdAt,
